@@ -18,29 +18,34 @@ export function Home() {
 
   async function handleScore() {
     await new Promise((resolve) => {
-      Alert.alert(
-        "Parabéns!",
-        "Como foi responder essa questão agora?",
-        [
-          {
-            text: "Fácil",
-            onPress: () => {
-              resolve('YES');
-            },
+      Alert.alert('Parabéns!', 'Como foi responder essa questão agora?', [
+        {
+          text: 'Fácil',
+          onPress: () => {
+            resolve('YES');
           },
-          {
-            text: "Difícil",
-            onPress: () => {
-              resolve('YES');
-            },
+        },
+        {
+          text: 'Difícil',
+          onPress: () => {
+            resolve('YES');
           },
-        ]
-      );
+        },
+      ]);
     });
-  };
+  }
 
   async function handleCorrect() {
+    if (currentCard < totalOfCards) {
+      await handleScore();
 
+      cardListRef.current?.scrollToIndex({
+        index: currentCard + 1,
+        animated: true,
+      });
+    }
+
+    setCurrentCard((prevState) => prevState + 1);
   }
 
   return (
@@ -51,11 +56,12 @@ export function Home() {
       <FlatList
         ref={cardListRef}
         data={CARDS}
-        keyExtractor={item => item.id}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => <FlipCard data={item} />}
         horizontal
         scrollEnabled={false}
         showsHorizontalScrollIndicator={false}
+        initialScrollIndex={currentCard}
       />
 
       <Text style={styles.tip}>Toque no cartão para inverter</Text>

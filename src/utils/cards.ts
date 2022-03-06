@@ -14,4 +14,26 @@ export const CARDS = [
     front: "Never stop learning",
     back: "Nunca pare de aprender."
   },
+  {
+    id: "4",
+    front: "Never stop dreaming",
+    back: "Nunca pare de sonhar."
+  },
+  {
+    id: "5",
+    front: "Never stop improving",
+    back: "Nunca pare de melhorar."
+  },
+  {
+    id: "6",
+    front: "Never stop growing",
+    back: "Nunca pare de crescer."
+  },
+  {
+    id: "7",
+    front: "No pain, no gain",
+    back: "Sem dor, sem ganho."
+  },
+  
+
 ];
